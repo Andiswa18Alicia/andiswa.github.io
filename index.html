@@ -356,7 +356,7 @@
       </span>
       <span class="contact-item">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="33525d575a4044525d54505c5d545c020b73545e525a5f1d505c5e">[email&#160;protected]</a>
+        <span id="email-display"></span>
       </span>
       <span class="contact-item">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -528,4 +528,30 @@
           Open to opportunities in IT support, systems development, and cybersecurity. 
           Let's connect and build something great together.
         </p>
-        <a href="/cdn-cgi/l/email-protection#f69798929f85819798919599989199c7ceb6919b979f9ad895999b" style="display:inline-b
+        <a id="email-btn" href="#" style="display:inline-block; background:var(--blue); color:#fff; text-decoration:none; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; padding:12px 24px; font-weight:500;">
+          Send Email &rarr;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>Andiswa Alicia Ngcongo</span> &middot; Kayamandi, Stellenbosch &middot; 2025
+</footer>
+
+<script>
+  (function() {
+    var u = 'andiswangcongo18';
+    var d = 'gmail.com';
+    var email = u + '@' + d;
+    var display = document.getElementById('email-display');
+    if (display) display.textContent = email;
+    var btn = document.getElementById('email-btn');
+    if (btn) btn.href = 'mailto:' + email;
+  })();
+</script>
+
+</body>
+</html>
