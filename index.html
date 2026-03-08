@@ -335,9 +335,72 @@
     .main-content { padding: 60px 32px; }
     .section-grid { grid-template-columns: 1fr; gap: 48px; }
   }
+
+  /* ---- DARK MODE ---- */
+  body.dark {
+    --ink: #f0ece4;
+    --cream: #0f0f0f;
+    --gold: #d4a847;
+    --blue: #7aafd4;
+    --muted: #a09890;
+    --light: #2a2a2a;
+    background: #0f0f0f;
+    color: #f0ece4;
+  }
+
+  body.dark .main-content { background: #161616; }
+  body.dark .hero::before { opacity: 0.3; }
+  body.dark .skill-tag { background: #1e1e1e; border-color: #2a2a2a; color: #d0cac0; }
+  body.dark .section { background: transparent; }
+  body.dark footer { background: #0a0a0a; }
+  body.dark h1 { color: #7aafd4; }
+  body.dark h2 { color: #7aafd4; }
+  body.dark .hero-photo img { filter: sepia(5%) contrast(1.1) brightness(0.85); }
+  body.dark .summary { color: #c0bab0; }
+  body.dark a { color: var(--muted); }
+
+  /* ---- TOGGLE BUTTON ---- */
+  .theme-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 1000;
+    background: var(--blue);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .theme-toggle:hover { transform: scale(1.05); }
+
+  .toggle-icon { font-size: 15px; transition: transform 0.4s ease; }
+  body.dark .toggle-icon { transform: rotate(180deg); }
+
+  /* Smooth transition for everything */
+  body, .main-content, .skill-tag, footer, h1, h2, .hero-photo img {
+    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+
 </style>
 </head>
 <body>
+
+
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle dark/light mode">
+  <span class="toggle-icon" id="toggleIcon">🌙</span>
+  <span id="toggleLabel">Dark Mode</span>
+</button>
 
 <section class="hero">
   <div class="hero-text">
@@ -545,8 +608,12 @@
   <span>Andiswa Alicia Ngcongo</span> &middot; Kayamandi, Stellenbosch &middot; 2025
 </footer>
 
+
+
+
 <script>
   (function() {
+    // Email fix
     var u = 'andiswangcongo18';
     var d = 'gmail.com';
     var email = u + '@' + d;
@@ -554,7 +621,33 @@
     if (display) display.textContent = email;
     var btn = document.getElementById('email-btn');
     if (btn) btn.href = 'mailto:' + email;
+
+    // Restore saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      var icon = document.getElementById('toggleIcon');
+      var label = document.getElementById('toggleLabel');
+      if (icon) icon.textContent = '☀️';
+      if (label) label.textContent = 'Light Mode';
+    }
   })();
+
+  function toggleTheme() {
+    var body = document.body;
+    var icon = document.getElementById('toggleIcon');
+    var label = document.getElementById('toggleLabel');
+    var isDark = body.classList.toggle('dark');
+
+    if (isDark) {
+      icon.textContent = '☀️';
+      label.textContent = 'Light Mode';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      icon.textContent = '🌙';
+      label.textContent = 'Dark Mode';
+      localStorage.setItem('theme', 'light');
+    }
+  }
 </script>
 
 </body>
